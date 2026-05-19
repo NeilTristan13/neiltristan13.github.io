@@ -235,35 +235,86 @@
       <h2>Get In Touch</h2>
     </div>
     <div class="contact-grid">
-      <div class="contact-text">
-        <h3>Let's work<br><em style="font-style:italic;color:var(--accent)">together.</em></h3>
-        <p>Whether you have a project in mind, a question to ask, or just want to say hello — my inbox is always open. I'll do my best to get back to you!</p>
+
+      <div class="contact-left">
+        <div class="contact-text">
+          <h3>Let's work<br><em style="font-style:italic;color:var(--accent)">together.</em></h3>
+          <p>Whether you have a project in mind, a question to ask, or just want to say hello — my inbox is always open. I'll do my best to get back to you!</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:neilosunero@gmail.com" class="contact-link">
+            <span class="link-icon">✉️</span>
+            <div>
+              <div class="link-label">Email</div>
+              <div class="link-value">neilosunero@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://github.com/NeilTristan13" target="_blank" rel="noopener" class="contact-link">
+            <span class="link-icon">🐙</span>
+            <div>
+              <div class="link-label">GitHub</div>
+              <div class="link-value">github.com/NeilTristan13</div>
+            </div>
+          </a>
+          <a href="https://www.facebook.com/tristan.osunero" target="_blank" rel="noopener" class="contact-link">
+            <span class="link-icon">📘</span>
+            <div>
+              <div class="link-label">Facebook</div>
+              <div class="link-value">facebook.com/tristan.osunero</div>
+            </div>
+          </a>
+        </div>
       </div>
-      <div class="contact-links">
-        <a href="mailto:neilosunero@gmail.com" class="contact-link">
-          <span class="link-icon">✉️</span>
-          <div>
-            <div class="link-label">Email</div>
-            <div class="link-value">neilosunero@gmail.com</div>
-          </div>
-        </a>
-        <a href="https://github.com/NeilTristan13" target="_blank" rel="noopener" class="contact-link">
-          <span class="link-icon">🐙</span>
-          <div>
-            <div class="link-label">GitHub</div>
-            <div class="link-value">github.com/NeilTristan13</div>
-          </div>
-        </a>
-        <a href="https://www.facebook.com/tristan.osunero" target="_blank" rel="noopener" class="contact-link">
-          <span class="link-icon">📘</span>
-          <div>
-            <div class="link-label">Facebook</div>
-            <div class="link-value">facebook.com/tristan.osunero</div>
-          </div>
-        </a>
-      </div>
+
+      <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value="6bd5f93a-22cc-4749-a68a-2d45a3ec41b7">
+        <input type="hidden" name="subject" value="New message from your portfolio">
+        <div class="form-group">
+          <label class="form-label" for="name">Your Name</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="Juan dela Cruz" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="juan@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-input form-textarea" id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">Send Message →</button>
+        <div class="form-status" id="formStatus"></div>
+      </form>
+
     </div>
   </section>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      const data = Object.fromEntries(new FormData(form));
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.success) {
+        status.textContent = '✓ Message sent! I\'ll get back to you soon.';
+        status.className = 'form-status form-status--success';
+        form.reset();
+      } else {
+        status.textContent = '✗ Something went wrong. Please try again.';
+        status.className = 'form-status form-status--error';
+      }
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+    });
+  </script>
 
   <!-- FOOTER -->
   <footer>

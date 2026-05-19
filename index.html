@@ -266,9 +266,10 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="6bd5f93a-22cc-4749-a68a-2d45a3ec41b7">
         <input type="hidden" name="subject" value="New message from your portfolio">
+        <input type="hidden" name="redirect" value="https://web3forms.com/success">
         <div class="form-group">
           <label class="form-label" for="name">Your Name</label>
           <input class="form-input" type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -282,19 +283,10 @@
           <textarea class="form-input form-textarea" id="message" name="message" placeholder="Tell me about my project..." required></textarea>
         </div>
         <button type="submit" class="btn btn-primary form-submit">Send Message →</button>
-        <div class="form-status" id="formStatus"></div>
       </form>
 
     </div>
   </section>
-
- <form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="6bd5f93a-22cc-4749-a68a-2d45a3ec41b7">
-  <input type="text" name="name" required>
-  <input type="email" name="email" required>
-  <textarea name="message" required></textarea>
-  <button type="submit">Submit</button>
-</form>
 
   <!-- FOOTER -->
   <footer>

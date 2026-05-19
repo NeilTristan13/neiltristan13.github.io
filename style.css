@@ -396,19 +396,56 @@ footer {
   from { opacity: 0; } to { opacity: 1; }
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE — mobile (≤768px) */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
-  #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
-  .hero-visual { display: none; }
+
+  #hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 6rem 1.5rem 3rem;
+    gap: 2rem;
+  }
+  .hero-text { order: 2; align-items: center; text-align: center; }
+  .hero-visual { order: 1; display: flex; justify-content: center; }
+  .hero-photo-wrap { width: 160px; height: 160px; }
+  .hero-photo-wrap::before { top: 8px; left: 8px; }
+  h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  .hero-cta { justify-content: center; flex-wrap: wrap; }
+
   section { padding: 4rem 1.5rem; }
+  .section-header { flex-direction: column; gap: 0.4rem; margin-bottom: 2.5rem; }
+
   #about .about-grid,
   #contact .contact-grid,
   #skills .skills-grid,
   .projects-grid,
-  .certs-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .certs-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
   .contact-left { gap: 1.5rem; }
-  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .contact-form { padding: 1.5rem; }
   .cert-preview { height: 200px; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+
+/* RESPONSIVE — small mobile (≤480px) */
+@media (max-width: 480px) {
+  .hero-photo-wrap { width: 130px; height: 130px; }
+  h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+  .btn { padding: 0.65rem 1.3rem; font-size: 0.68rem; }
+  .hero-cta { gap: 0.7rem; }
+  .skill-card { padding: 1.5rem; }
+  .contact-form { padding: 1.2rem; }
+}
+/* RESPONSIVE — tablet (≤1024px) */
+@media (max-width: 1024px) {
+  nav { padding: 1.2rem 2rem; }
+  #hero { padding: 0 2rem; padding-top: 80px; gap: 2rem; }
+  .hero-photo-wrap { width: 200px; height: 200px; }
+  section { padding: 5rem 2rem; }
+  #about .about-grid { gap: 3rem; }
+  #skills .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .certs-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
